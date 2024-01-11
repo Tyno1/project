@@ -1,0 +1,26 @@
+version: '3.4'
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: tyno
+      MONGO_INITDB_ROOT_PASSWORD: tyno
+
+  uswdsbackend:
+    image: uswdsbackend
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - 3000:3000
+
+volumes:
+  mongodb_data:

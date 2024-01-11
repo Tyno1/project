@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="/stylesheet/index.css" />
+    <title>Add New Skill</title>
+  </head>
+
+  <body>
+    <!-- navbar -->
+    <nav class="navbar">
+      <div class="logo">
+        <a href="/">Portfolio Backend</a>
+      </div>
+
+      <div class="links" id="menu">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/skills-list">Skills</a></li>
+          <li><a href="/projects-list">Projects</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="project-list">
+      <div class="first-section">
+        <h1>All Projects</h1>
+        <button style="width: 120px">
+          <a href="/projects-form">Add Project</a>
+        </button>
+      </div>
+      <!-- Display the fetched Projects data -->
+      <% if (projects.length > 0) { %>
+      <ul class="list">
+        <% projects.forEach(project => { %>
+        <div key="<%= project._id %>" class="card">
+          <li style="width: 70%">
+            <div class="skill">
+              <p class="p-name"><%= project.name %></p>
+              <p class="p-stack"><%= project.techStack %></p>
+              <p class="p-des"><%= project.description %></p>
+            </div>
+          </li>
+          <div class="buttons">
+            <button>
+              <a href="/projects/<%= project._id %>/edit">edit</a>
+            </button>
+            <form
+              action="/projects/<%= project._id %>?_method=DELETE"
+              method="POST"
+            >
+              <button type="submit">delete</button>
+            </form>
+          </div>
+        </div>
+        <% }); %>
+      </ul>
+      <% } else { %>
+      <div class="no-project">No project to display</div>
+      <% } %>
+    </div>
+  </body>
+</html>

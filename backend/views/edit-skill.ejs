@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="/stylesheet/index.css" />
+  <title>Edit Skill</title>
+</head>
+
+<body>
+  <!-- navbar -->
+  <nav class="navbar">
+    <div class="logo">
+      <a href="/">Portfolio Backend</a>
+    </div>
+
+    <div class="links" id="menu">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/skills-list">Skills</a></li>
+        <li><a href="/projects-list">Projects</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="edit-skill">
+    <h1>Edit Skill</h1>
+    <form method="POST" action="/skills/<%= skill._id %>?_method=PUT">
+      <div class="skill-name">
+        <label for="name">Skill Name:</label>
+        <input type="text" id="name" name="name" value="<%= skill.name %>" required>
+      </div>
+      <div class="skill-des">
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" required><%= skill.description %></textarea>
+
+      </div>
+
+      <button style="width: 120px;" type="submit">Update Skill</button>
+    </form>
+  </div>
+
+
+</body>
+</html>

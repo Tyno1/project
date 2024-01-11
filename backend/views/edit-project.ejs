@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="/stylesheet/index.css" />
+    <title>Edit Project</title>
+  </head>
+
+  <body>
+    <!-- navbar -->
+    <nav class="navbar">
+      <div class="logo">
+        <a href="/">Portfolio Backend</a>
+      </div>
+
+      <div class="links" id="menu">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/skills-list">Skills</a></li>
+          <li><a href="/projects-list">Projects</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="edit-form">
+      <h1>Edit Project</h1>
+      <form
+        action="/projects/<%= project._id %>?_method=PUT"
+        method="POST"
+      >
+        <div class="project-name">
+          <label for="name">Project Name:</label>
+          <input type="text" id="name" name="name" value="<%= project.name %>" required />
+        </div>
+        <div class="stack">
+          <label for="techStack">Tech stack:</label>
+          <input type="text" id="techStack" name="techStack" value="<%= project.techStack %>" required />
+        </div>
+
+        <div class="project-des">
+          <label for="description">Description:</label>
+          <textarea id="description" name="description" required><%= project.description %></textarea>
+        </div>
+
+        <button type="submit">Update Project</button>
+      </form>
+    </div>
+  </body>
+</html>

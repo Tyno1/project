@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="/stylesheet/index.css" />
+    <title>Add New Skill</title>
+  </head>
+
+  <body>
+    <!-- navbar -->
+    <nav class="navbar">
+      <div class="logo">
+        <a href="/">Portfolio Backend</a>
+      </div>
+
+      <div class="links" id="menu">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/skills-list">Skills</a></li>
+          <li><a href="/projects-list">Projects</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="skill-list">
+      <div class="first-section">
+        <h1>All Skills</h1>
+        <button><a href="/skills-form">Add Skill</a></button>
+      </div>
+      <!-- Display the fetched skills data -->
+      <% if (skills.length > 0) { %>
+      <ul class="list">
+        <% skills.forEach(skill => { %>
+        <div key="skill._id" class="card">
+          <li class="skill"><%= skill.name %></li>
+          <div class="buttons">
+            <button><a href="/skills/<%= skill._id %>/edit">edit</a></button>
+            <form
+              action="/skills/<%= skill._id %>?_method=DELETE"
+              method="POST"
+            >
+              <button type="submit">delete</button>
+            </form>
+          </div>
+        </div>
+        <% }); %>
+      </ul>
+      <% } else { %>
+      <div class="no-skill">No skill to display</div>
+      <% } %>
+    </div>
+  </body>
+</html>
